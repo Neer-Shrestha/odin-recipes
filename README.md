@@ -2,6 +2,10 @@
 
 Odin Recipes is a simple website that allows you to see the recipes of your favorite foods. Here I only added a few recipes of the foods.
 
+# Screenshot
+
+![](https://github.com/Neer-Shrestha/odin-recipes/blob/main/assets/img/screenshot.png)
+
 # Homepage
 
     In Homepage you will find the list of foods.
