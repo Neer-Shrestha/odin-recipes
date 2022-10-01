@@ -1,13 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-  --secondary-font: "Kalam", cursive;
+  --secondary-font: "Caveat", cursive;
   --primary-font: "Montserrat", sans-serif;
-  --fs-h1: 48px;
-  --fs-h2: 32px;
-  --fs-h3: 24px;
-  --fs-h4: 20px;
-  --fs-h5: 18px;
-  --fs-h6: 16px;
+  --fs-h1: clamp(32px, 4vw, 48px);
+  --fs-h2: clamp(22px, 4vw, 32px);
+  --fs-h3: clamp(20px, 4vw, 24px);
+  --fs-h4: clamp(18px, 4vw, 20px);
+  --fs-h5: clamp(16px, 4vw, 18px);
+  --fs-h6: clamp(14px, 4vw, 16px);
+  --clr-black: #000;
   --clr-dark: #333;
   --clr-white: #fff;
   --clr-primary: #cc0000;
@@ -36,6 +37,7 @@ h4,
 h5,
 h6 {
   font-family: var(--secondary-font);
+  color: var(--clr-black);
 }
 
 h1,
@@ -74,23 +76,30 @@ h6 {
   font-size: var(--fs-h6);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 a {
   text-decoration: none;
   -webkit-transition: var(--transition);
   transition: var(--transition);
-  color: var(--clr-dark);
+  color: var(--clr-black);
 }
 a:hover {
   color: var(--clr-primary);
 }
 
+p {
+  margin-bottom: 10px;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 ul {
-  list-style: none;
+  list-style-position: inside;
 }
 
 ::-moz-selection {
@@ -140,6 +149,7 @@ ul {
 
 .site-branding {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .main-section {
@@ -183,7 +193,11 @@ ul {
   height: 100%;
 }
 .card:hover .card-body {
-  bottom: 0;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  -webkit-transition-delay: 0s, 0s;
+          transition-delay: 0s, 0s;
 }
 .card .card-img img {
   height: 100%;
@@ -195,16 +209,109 @@ ul {
 .card .card-body {
   padding: 20px;
   position: absolute;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
-  -webkit-transition: var(--transition);
-  transition: var(--transition);
+  opacity: 0;
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+  -webkit-transition-delay: 0.3s, 0.3s;
+          transition-delay: 0.3s, 0.3s;
 }
 .card .card-body a {
   color: var(--clr-white);
 }
 .card .card-body a:hover {
-  color: var(--clr-primary);
+  opacity: 0.7;
+}
+
+.page-header {
+  padding: 20px 0;
+}
+.page-header .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 992px) {
+  .page-header .inner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 50px;
+  }
+}
+.page-header .page-title {
+  color: var(--clr-black);
+  font-family: var(--primary-font);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.page-header .thumbnail img {
+  aspect-ratio: 5/2;
+  -o-object-fit: cover;
+     object-fit: cover;
+  inline-size: 100%;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+@media (min-width: 992px) {
+  .page-header .thumbnail img {
+    min-width: 600px;
+  }
+}
+@media (min-width: 1200px) {
+  .page-header .thumbnail img {
+    min-width: 750px;
+  }
+}
+
+.site-main {
+  padding: 20px 0 50px;
+}
+
+.info-item:not(:last-of-type) {
+  margin-bottom: 50px;
+}
+.info-item h2 {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .step-item {
+    max-width: 80%;
+  }
+}
+@media (min-width: 1200px) {
+  .step-item {
+    max-width: 60%;
+  }
+}
+.step-item:not(:last-of-type) {
+  margin-bottom: 30px;
+}
+
+.site-footer {
+  padding: 15px;
+  color: var(--clr-white);
+  background-color: var(--clr-dark);
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
